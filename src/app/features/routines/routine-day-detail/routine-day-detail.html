@@ -1,0 +1,124 @@
+@if (routine && day) {
+
+<main class="page">
+
+    <header class="header">
+
+        <button class="back-button" (click)="goBack()" aria-label="Volver">
+            ←
+        </button>
+
+        <div class="header-info">
+            <span class="routine-name">
+                {{ routine.name }}
+            </span>
+
+            <h1>
+                {{ day.name }}
+            </h1>
+        </div>
+
+    </header>
+
+    <section class="exercise-section">
+
+        <div class="section-header">
+
+            <div>
+                <span class="section-label">
+                    EJERCICIOS
+                </span>
+
+                <h2>
+                    {{ day.exerciseIds.length }}
+                    {{ day.exerciseIds.length === 1 ? 'ejercicio' : 'ejercicios' }}
+                </h2>
+            </div>
+
+        </div>
+
+        @if (day.exerciseIds.length === 0) {
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                +
+            </div>
+
+            <h3>
+                Añadir ejercicio
+            </h3>
+
+            <p>
+                Añade los ejercicios que realizas en este entrenamiento.
+            </p>
+
+            <a class="primary-button" [routerLink]="[
+                '/routines',
+                routine.id,
+                'days',
+                day.id,
+                'exercises',
+                'new'
+              ]">
+                Añadir ejercicio
+            </a>
+
+        </div>
+
+        } @else {
+
+        <div class="exercise-list">
+
+            @for (exerciseId of day.exerciseIds; track exerciseId) {
+
+            @if (exerciseService.getExerciseById(exerciseId); as exercise) {
+
+            <article class="exercise-card">
+
+                <div class="exercise-number">
+                    {{ $index + 1 }}
+                </div>
+
+                <div class="exercise-info">
+
+                    <strong>
+                        {{ exercise.name }}
+                    </strong>
+
+                    <span>
+                        {{ exercise.muscleGroup }}
+                    </span>
+
+                </div>
+
+                <span class="exercise-arrow">
+                    ›
+                </span>
+
+            </article>
+
+            }
+
+            }
+
+            <a class="add-exercise-button" [routerLink]="[
+                '/routines',
+                routine.id,
+                'days',
+                day.id,
+                'exercises',
+                'new'
+              ]">
+                + Añadir ejercicio
+            </a>
+
+        </div>
+
+        }
+
+    </section>
+
+</main>
+
+}

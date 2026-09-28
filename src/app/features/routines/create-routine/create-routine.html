@@ -1,0 +1,57 @@
+<main class="create-routine">
+
+    <header class="header">
+      <button
+        class="back-button"
+        (click)="cancel()"
+        aria-label="Volver"
+      >
+        ←
+      </button>
+  
+      <div>
+        <span class="section-label">RUTINAS</span>
+        <h1>Nueva rutina</h1>
+      </div>
+    </header>
+  
+    <section class="form-section">
+  
+      <label for="routineName">
+        Nombre de la rutina
+      </label>
+  
+      <input
+        id="routineName"
+        type="text"
+        [(ngModel)]="routineName"
+        placeholder="Ej. Rutina Octubre 2026"
+        autocomplete="off"
+      >
+  
+      <p class="help-text">
+        Podrás añadir los entrenamientos y ejercicios en el siguiente paso.
+      </p>
+  
+    </section>
+  
+    <div class="actions">
+  
+      <button
+        class="secondary-button"
+        (click)="cancel()"
+      >
+        Cancelar
+      </button>
+  
+      <button
+        class="primary-button"
+        (click)="createRoutine()"
+        [disabled]="!routineName.trim()"
+      >
+        Crear rutina
+      </button>
+  
+    </div>
+  
+  </main>

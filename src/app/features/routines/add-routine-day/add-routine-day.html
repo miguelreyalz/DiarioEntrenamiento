@@ -1,0 +1,44 @@
+<main class="page">
+
+    <header class="header">
+
+        <button class="back-button" (click)="cancel()" aria-label="Volver">
+            ←
+        </button>
+
+        <div>
+            <span class="section-label">RUTINA</span>
+            <h1>Añadir entrenamiento</h1>
+        </div>
+
+    </header>
+
+    <section class="form">
+
+        <label for="dayName">
+            Nombre del entrenamiento
+        </label>
+
+        <input id="dayName" [(ngModel)]="dayName" type="text" placeholder="Ej. Día 1 · Pecho + Bíceps"
+            autocomplete="off">
+
+        <p>
+            No está asociado a ningún día de la semana.
+            Tú elegirás qué entrenamiento realizar cada día.
+        </p>
+
+    </section>
+
+    <div class="actions">
+
+        <button class="cancel-button" (click)="cancel()">
+            Cancelar
+        </button>
+
+        <button class="create-button" [disabled]="!dayName.trim()" (click)="createDay()">
+            Añadir
+        </button>
+
+    </div>
+
+</main>

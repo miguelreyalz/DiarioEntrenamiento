@@ -1,0 +1,196 @@
+.home {
+  max-width: 600px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 32px 20px 110px;
+}
+
+.home-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 58px;
+}
+
+.app-name,
+.section-label,
+.active-routine span {
+  color: #777;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+h1 {
+  margin: 7px 0 0;
+
+  font-size: 28px;
+}
+
+.settings-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid #292929;
+  border-radius: 12px;
+
+  background: #151515;
+  color: white;
+
+  font-size: 16px;
+}
+
+.training-section h2 {
+  margin: 6px 0 26px;
+
+  font-size: 24px;
+}
+
+.active-routine {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin-bottom: 18px;
+}
+
+.active-routine strong {
+  font-size: 14px;
+}
+
+.training-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.training-card {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  gap: 15px;
+  padding: 18px;
+
+  border: 1px solid #252525;
+  border-radius: 16px;
+
+  background: #111;
+  color: white;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.day-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: #202020;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.training-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.training-info strong {
+  font-size: 16px;
+}
+
+.training-info span {
+  color: #777;
+
+  font-size: 12px;
+}
+
+.arrow {
+  color: #777;
+
+  font-size: 20px;
+}
+
+.empty-state {
+  padding: 44px 24px;
+
+  border: 1px solid #252525;
+  border-radius: 18px;
+
+  background: #111;
+
+  text-align: center;
+}
+
+.empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  background: #202020;
+
+  font-size: 27px;
+}
+
+.empty-state h3 {
+  margin: 0 0 9px;
+
+  font-size: 19px;
+}
+
+.empty-state p {
+  max-width: 400px;
+
+  margin: 0 auto 24px;
+
+  color: #888;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.primary-button {
+  display: block;
+
+  padding: 15px;
+
+  border-radius: 11px;
+
+  background: white;
+  color: black;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}

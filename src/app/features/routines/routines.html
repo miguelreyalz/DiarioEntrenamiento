@@ -1,0 +1,172 @@
+<main class="routines-page">
+
+    <header class="page-header">
+        <div>
+            <span class="section-label">GYM DIARY</span>
+            <h1>Mis rutinas</h1>
+        </div>
+
+        <a routerLink="/routines/new" class="add-button" aria-label="Crear nueva rutina">
+            +
+        </a>
+    </header>
+
+
+    @if (activeRoutine(); as routine) {
+
+    <section class="routine-section">
+
+        <div class="section-title">
+            <span class="status-dot"></span>
+            <span>RUTINA ACTIVA</span>
+        </div>
+
+        <article class="routine-card active">
+
+            <div class="routine-card-header">
+
+                <div>
+                    <h2>{{ routine.name }}</h2>
+
+                    <p>
+                        {{ routine.days.length }}
+                        {{ routine.days.length === 1 ? 'entrenamiento' : 'entrenamientos' }}
+                    </p>
+                </div>
+
+                <div class="routine-actions">
+
+                    <span class="active-badge">
+                        ACTIVA
+                    </span>
+
+                    <button class="delete-button" (click)="deleteRoutine(routine.id, routine.name)"
+                        aria-label="Eliminar rutina" title="Eliminar rutina">
+                        🗑
+                    </button>
+
+                </div>
+
+            </div>
+
+            @if (routine.days.length === 0) {
+
+            <div class="empty-days">
+                <p>
+                    Todavía no has añadido ningún entrenamiento a esta rutina.
+                </p>
+
+                <a class="add-workout-button" [routerLink]="['/routines', routine.id, 'days', 'new']">
+                    Añadir entrenamiento
+                </a>
+            </div>
+
+            }
+
+            @if (routine.days.length > 0) {
+
+            <div class="routine-days">
+
+                @for (day of routine.days; track day.id) {
+
+                <a class="routine-day" [routerLink]="['/routines', routine.id, 'days', day.id]">
+
+                    <div class="day-number">
+                        {{ day.order }}
+                    </div>
+
+                    <div class="day-info">
+
+                        <strong>
+                            {{ day.name }}
+                        </strong>
+
+                        <span>
+                            {{ day.exerciseIds.length }}
+                            {{ day.exerciseIds.length === 1 ? 'ejercicio' : 'ejercicios' }}
+                        </span>
+
+                    </div>
+
+                    <span class="day-arrow">›</span>
+
+                </a>
+
+                }
+
+                <a class="add-another-day" [routerLink]="['/routines', routine.id, 'days', 'new']">
+                    + Añadir otro entrenamiento
+                </a>
+
+            </div>
+
+            }
+
+        </article>
+
+    </section>
+
+    } @else {
+
+    <section class="no-routine">
+        <h2>No tienes una rutina activa</h2>
+
+        <p>
+            Crea una rutina para empezar a registrar tus entrenamientos.
+        </p>
+
+        <a routerLink="/routines/new">
+            Crear rutina
+        </a>
+    </section>
+
+    }
+
+
+    <section class="routine-section archived-section">
+
+        <div class="section-title">
+            <span>RUTINAS ANTERIORES</span>
+        </div>
+
+        @if (archivedRoutines().length === 0) {
+
+        <div class="no-archived">
+            Todavía no tienes rutinas anteriores.
+        </div>
+
+        } @else {
+
+        @for (routine of archivedRoutines(); track routine.id) {
+
+        <article class="routine-card archived">
+
+            <div>
+                <h3>{{ routine.name }}</h3>
+
+                <p>
+                    {{ routine.days.length }}
+                    {{ routine.days.length === 1 ? 'entrenamiento' : 'entrenamientos' }}
+                </p>
+            </div>
+
+            <div class="archived-actions">
+
+                <button class="delete-button" (click)="deleteRoutine(routine.id, routine.name)"
+                    aria-label="Eliminar rutina" title="Eliminar rutina">
+                    🗑
+                </button>
+
+                <span class="arrow">›</span>
+
+            </div>
+
+        </article>
+
+        }
+
+        }
+
+    </section>
+
+</main>

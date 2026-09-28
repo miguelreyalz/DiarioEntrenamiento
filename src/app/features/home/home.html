@@ -1,0 +1,133 @@
+<main class="home">
+
+    <header class="home-header">
+
+        <div>
+            <span class="app-name">
+                GYM DIARY
+            </span>
+
+            <h1>
+                Buenas, Miguel
+            </h1>
+        </div>
+
+        <button class="settings-button" aria-label="Ajustes">
+            ⚙
+        </button>
+
+    </header>
+
+
+    <section class="training-section">
+
+        <span class="section-label">
+            ENTRENAMIENTO
+        </span>
+
+        <h2>
+            ¿Qué entrenas hoy?
+        </h2>
+
+
+        @if (activeRoutine(); as routine) {
+
+        @if (routine.days.length > 0) {
+
+        <div class="active-routine">
+
+            <span>RUTINA ACTUAL</span>
+
+            <strong>
+                {{ routine.name }}
+            </strong>
+
+        </div>
+
+
+        <div class="training-list">
+
+            @for (day of routine.days; track day.id) {
+
+            <button class="training-card" (click)="startWorkout(day)">
+
+                <div class="day-number">
+                    {{ ($index + 1).toString().padStart(2, '0') }}
+                </div>
+
+
+                <div class="training-info">
+
+                    <strong>
+                        {{ day.name }}
+                    </strong>
+
+                    <span>
+                        {{ day.exerciseIds.length }}
+                        {{ day.exerciseIds.length === 1 ? 'ejercicio' : 'ejercicios' }}
+                    </span>
+
+                </div>
+
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
+            }
+
+        </div>
+
+        } @else {
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                +
+            </div>
+
+            <h3>
+                Tu rutina está vacía
+            </h3>
+
+            <p>
+                Añade entrenamientos a tu rutina para empezar a registrar tus sesiones.
+            </p>
+
+            <a routerLink="/routines" class="primary-button">
+                Configurar rutina
+            </a>
+
+        </div>
+
+        }
+
+        } @else {
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                +
+            </div>
+
+            <h3>
+                Crea tu primera rutina
+            </h3>
+
+            <p>
+                Añade tu rutina actual y los entrenamientos que la componen para empezar a registrar tus sesiones.
+            </p>
+
+            <a routerLink="/routines/new" class="primary-button">
+                Crear primera rutina
+            </a>
+
+        </div>
+
+        }
+
+    </section>
+
+</main>

@@ -1,0 +1,199 @@
+.page {
+    max-width: 600px;
+    min-height: 100vh;
+  
+    margin: 0 auto;
+    padding: 32px 20px 110px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+  
+    gap: 16px;
+  
+    margin-bottom: 48px;
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 44px;
+    height: 44px;
+  
+    flex-shrink: 0;
+  
+    border: 1px solid #292929;
+    border-radius: 12px;
+  
+    background: #151515;
+    color: white;
+  
+    font-size: 20px;
+  }
+  
+  .header-info {
+    min-width: 0;
+  }
+  
+  .routine-name,
+  .section-label {
+    color: #777;
+  
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  
+  h1 {
+    margin: 4px 0 0;
+  
+    font-size: 27px;
+  }
+  
+  .section-header {
+    margin-bottom: 20px;
+  }
+  
+  .section-header h2 {
+    margin: 5px 0 0;
+  
+    font-size: 20px;
+  }
+  
+  .empty-state {
+    padding: 42px 24px;
+  
+    border: 1px solid #222;
+    border-radius: 18px;
+  
+    background: #111;
+  
+    text-align: center;
+  }
+  
+  .empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 52px;
+    height: 52px;
+  
+    margin: 0 auto 18px;
+  
+    border-radius: 50%;
+  
+    background: #202020;
+  
+    font-size: 28px;
+  }
+  
+  .empty-state h3 {
+    margin: 0 0 8px;
+  
+    font-size: 19px;
+  }
+  
+  .empty-state p {
+    margin: 0 0 24px;
+  
+    color: #888;
+  
+    font-size: 14px;
+  }
+  
+  .primary-button {
+    display: block;
+  
+    width: 100%;
+    padding: 15px;
+  
+    border-radius: 11px;
+  
+    background: white;
+    color: black;
+  
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .exercise-card {
+    display: flex;
+    align-items: center;
+  
+    gap: 14px;
+  
+    padding: 16px;
+  
+    border: 1px solid #252525;
+    border-radius: 14px;
+  
+    background: #111111;
+  }
+  
+  .exercise-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 38px;
+    height: 38px;
+  
+    flex-shrink: 0;
+  
+    border-radius: 10px;
+  
+    background: #202020;
+  
+    font-size: 14px;
+    font-weight: 700;
+  }
+  
+  .exercise-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  
+    gap: 4px;
+  }
+  
+  .exercise-info strong {
+    font-size: 15px;
+  }
+  
+  .exercise-info span {
+    color: #777777;
+    font-size: 12px;
+  }
+  
+  .exercise-arrow {
+    color: #777777;
+    font-size: 26px;
+  }
+  
+  .add-exercise-button {
+    display: block;
+  
+    margin-top: 8px;
+    padding: 14px;
+  
+    border: 1px solid #292929;
+    border-radius: 11px;
+  
+    color: #ffffff;
+  
+    font-size: 13px;
+    font-weight: 700;
+  
+    text-align: center;
+    text-decoration: none;
+  }

@@ -1,0 +1,172 @@
+<main class="page">
+
+    <header class="header">
+  
+      <button
+        class="back-button"
+        (click)="goBack()"
+        aria-label="Volver"
+      >
+        ←
+      </button>
+  
+      <div>
+        <span class="section-label">EJERCICIOS</span>
+        <h1>Añadir ejercicio</h1>
+      </div>
+  
+    </header>
+  
+  
+    @if (!showCreateForm) {
+  
+      <section class="search-section">
+  
+        <input
+          type="search"
+          placeholder="Buscar ejercicio..."
+          [ngModel]="search()"
+          (ngModelChange)="search.set($event)"
+          autocomplete="off"
+        >
+  
+      </section>
+  
+  
+      <section class="exercise-section">
+  
+        <span class="section-label">
+          TUS EJERCICIOS
+        </span>
+  
+  
+        @if (filteredExercises().length === 0) {
+  
+          <div class="empty-exercises">
+  
+            <p>
+              No tienes ejercicios que coincidan.
+            </p>
+  
+          </div>
+  
+        } @else {
+  
+          <div class="exercise-list">
+  
+            @for (exercise of filteredExercises(); track exercise.id) {
+  
+              <button
+                class="exercise-option"
+                (click)="selectExercise(exercise)"
+              >
+  
+                <div>
+  
+                  <strong>
+                    {{ exercise.name }}
+                  </strong>
+  
+                  <span>
+                    {{ exercise.muscleGroup }}
+                  </span>
+  
+                </div>
+  
+                <span class="plus">
+                  +
+                </span>
+  
+              </button>
+  
+            }
+  
+          </div>
+  
+        }
+  
+      </section>
+  
+  
+      <button
+        class="new-exercise-button"
+        (click)="openCreateForm()"
+      >
+        + Crear ejercicio nuevo
+      </button>
+  
+    }
+  
+  
+    @if (showCreateForm) {
+  
+      <section class="create-form">
+  
+        <span class="section-label">
+          NUEVO EJERCICIO
+        </span>
+  
+        <label for="exerciseName">
+          Nombre
+        </label>
+  
+        <input
+          id="exerciseName"
+          [(ngModel)]="exerciseName"
+          placeholder="Ej. Press inclinado Smith"
+          autocomplete="off"
+        >
+  
+  
+        <label for="muscleGroup">
+          Grupo muscular
+        </label>
+  
+        <select
+          id="muscleGroup"
+          [(ngModel)]="muscleGroup"
+        >
+  
+          <option value="" disabled>
+            Selecciona un grupo muscular
+          </option>
+  
+          <option value="Pecho">Pecho</option>
+          <option value="Espalda">Espalda</option>
+          <option value="Hombro">Hombro</option>
+          <option value="Bíceps">Bíceps</option>
+          <option value="Tríceps">Tríceps</option>
+          <option value="Cuádriceps">Cuádriceps</option>
+          <option value="Femoral">Femoral</option>
+          <option value="Glúteo">Glúteo</option>
+          <option value="Gemelo">Gemelo</option>
+          <option value="Abdominales">Abdominales</option>
+          <option value="Otro">Otro</option>
+  
+        </select>
+  
+  
+        <div class="actions">
+  
+          <button
+            class="cancel-button"
+            (click)="cancelCreate()"
+          >
+            Cancelar
+          </button>
+  
+          <button
+            class="create-button"
+            [disabled]="!exerciseName.trim() || !muscleGroup"
+            (click)="createExercise()"
+          >
+            Crear y añadir
+          </button>
+  
+        </div>
+  
+      </section>
+  
+    }
+  
+  </main>

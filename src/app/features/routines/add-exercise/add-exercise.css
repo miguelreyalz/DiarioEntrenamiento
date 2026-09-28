@@ -1,0 +1,203 @@
+.page {
+    max-width: 600px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 32px 20px 110px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  
+  .back-button {
+    width: 44px;
+    height: 44px;
+  
+    border: 1px solid #292929;
+    border-radius: 12px;
+  
+    background: #151515;
+    color: white;
+  
+    font-size: 20px;
+  }
+  
+  .section-label {
+    color: #777;
+  
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+  }
+  
+  h1 {
+    margin: 4px 0 0;
+    font-size: 27px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    margin-top: 10px;
+  
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 16px;
+  
+    border: 1px solid #292929;
+    border-radius: 12px;
+  
+    outline: none;
+  
+    background: #111;
+    color: white;
+  
+    font-size: 16px;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #666;
+  }
+  
+  input::placeholder {
+    color: #555;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 12px;
+  
+    margin-top: 40px;
+  }
+  
+  .actions button {
+    flex: 1;
+  
+    padding: 15px;
+  
+    border-radius: 12px;
+  
+    font-weight: 700;
+  }
+  
+  .cancel-button {
+    border: 1px solid #292929;
+  
+    background: #151515;
+    color: white;
+  }
+  
+  .create-button {
+    border: 0;
+  
+    background: white;
+    color: black;
+  }
+  
+  .create-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .search-section {
+    margin-bottom: 32px;
+  }
+  
+  .exercise-section {
+    margin-bottom: 24px;
+  }
+  
+  .exercise-list {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 8px;
+  
+    margin-top: 12px;
+  }
+  
+  .exercise-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    width: 100%;
+  
+    padding: 16px;
+  
+    border: 1px solid #252525;
+    border-radius: 13px;
+  
+    background: #111111;
+    color: #ffffff;
+  
+    text-align: left;
+  }
+  
+  .exercise-option div {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 4px;
+  }
+  
+  .exercise-option strong {
+    font-size: 15px;
+  }
+  
+  .exercise-option div span {
+    color: #777777;
+    font-size: 12px;
+  }
+  
+  .plus {
+    color: #ffffff !important;
+  
+    font-size: 24px !important;
+  }
+  
+  .new-exercise-button {
+    width: 100%;
+  
+    padding: 15px;
+  
+    border: 1px solid #292929;
+    border-radius: 12px;
+  
+    background: #151515;
+    color: #ffffff;
+  
+    font-weight: 700;
+  }
+  
+  .empty-exercises {
+    margin-top: 12px;
+    padding: 24px;
+  
+    border: 1px dashed #292929;
+    border-radius: 12px;
+  
+    color: #777777;
+  
+    text-align: center;
+  }
+  
+  .create-form {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 10px;
+  }
