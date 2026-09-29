@@ -1,1 +1,148 @@
-<p>progress works!</p>
+<main class="page">
+
+    <header class="header">
+  
+      <span class="section-label">
+        GYM DIARY
+      </span>
+  
+      <h1>
+        Progreso
+      </h1>
+  
+    </header>
+  
+  
+    <section class="selector-section">
+  
+      <label for="exercise">
+        Ejercicio
+      </label>
+  
+      <select
+        id="exercise"
+        [ngModel]="selectedExerciseId()"
+        (ngModelChange)="selectExercise($event)"
+      >
+  
+        <option value="">
+          Selecciona un ejercicio
+        </option>
+  
+        @for (
+          exercise of exerciseService.exercises();
+          track exercise.id
+        ) {
+  
+          <option [value]="exercise.id">
+            {{ exercise.name }}
+          </option>
+  
+        }
+  
+      </select>
+  
+    </section>
+  
+  
+    @if (selectedExercise(); as exercise) {
+  
+      <section class="exercise-header">
+  
+        <span class="muscle-group">
+          {{ exercise.muscleGroup }}
+        </span>
+  
+        <h2>
+          {{ exercise.name }}
+        </h2>
+  
+      </section>
+  
+  
+      @if (exerciseHistory().length > 0) {
+  
+        <section class="history">
+  
+          @for (
+            item of exerciseHistory();
+            track item.session.id
+          ) {
+  
+            <article class="history-card">
+  
+              <div class="history-card-header">
+  
+                <strong>
+                  {{ formatDate(item.session.startedAt) }}
+                </strong>
+  
+                <span>
+                  {{ item.session.dayName }}
+                </span>
+  
+              </div>
+  
+  
+              <div class="sets">
+  
+                @for (
+                  set of item.exerciseLog.sets;
+                  track set.id
+                ) {
+  
+                  @if (
+                    set.completed &&
+                    set.weight !== null &&
+                    set.reps !== null
+                  ) {
+  
+                    <div class="set-row">
+  
+                      <span>
+                        Serie {{ set.setNumber }}
+                      </span>
+  
+                      <strong>
+                        {{ set.weight }} kg × {{ set.reps }}
+                      </strong>
+  
+                    </div>
+  
+                  }
+  
+                }
+  
+              </div>
+  
+            </article>
+  
+          }
+  
+        </section>
+  
+      } @else {
+  
+        <div class="empty-state">
+  
+          <p>
+            Todavía no tienes registros para este ejercicio.
+          </p>
+  
+        </div>
+  
+      }
+  
+    } @else {
+  
+      <div class="empty-state">
+  
+        <p>
+          Selecciona un ejercicio para consultar tu progreso.
+        </p>
+  
+      </div>
+  
+    }
+  
+  </main>
