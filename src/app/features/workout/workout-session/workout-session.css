@@ -2,440 +2,448 @@
    PÁGINA
    ======================================== */
 
-   .page {
-    max-width: 600px;
-    min-height: 100vh;
-  
-    margin: 0 auto;
-    padding: 32px 20px 140px;
-  }
-  
-  
-  /* ========================================
+.page {
+  max-width: 600px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 32px 20px 140px;
+}
+
+
+/* ========================================
      CABECERA
      ======================================== */
-  
-  .header {
-    display: flex;
-    align-items: center;
-  
-    gap: 16px;
-  
-    margin-bottom: 30px;
-  }
-  
-  .back-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    width: 44px;
-    height: 44px;
-  
-    flex-shrink: 0;
-  
-    padding: 0;
-  
-    border: 1px solid #292929;
-    border-radius: 12px;
-  
-    background: #151515;
-    color: #ffffff;
-  
-    font-size: 20px;
-  
-    cursor: pointer;
-  }
-  
-  .routine-name,
-  .muscle-group,
-  .workout-info span {
-    color: #777777;
-  
-    font-size: 10px;
-    font-weight: 700;
-  
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-  
-  h1 {
-    margin: 4px 0 0;
-  
-    font-size: 26px;
-  }
-  
-  
-  /* ========================================
+
+.header {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-bottom: 30px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: 1px solid #292929;
+  border-radius: 12px;
+
+  background: #151515;
+  color: #ffffff;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.routine-name,
+.muscle-group,
+.workout-info span {
+  color: #777777;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 4px 0 0;
+
+  font-size: 26px;
+}
+
+
+/* ========================================
      ESTADO DEL ENTRENAMIENTO
      ======================================== */
-  
-  .workout-info {
-    margin-bottom: 20px;
-  }
-  
-  
-  /* ========================================
+
+.workout-info {
+  margin-bottom: 20px;
+}
+
+
+/* ========================================
      LISTA DE EJERCICIOS
      ======================================== */
-  
-  .exercise-list {
-    display: flex;
-    flex-direction: column;
-  
-    gap: 16px;
-  }
-  
-  
-  /* ========================================
+
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+
+/* ========================================
      TARJETA DEL EJERCICIO
      ======================================== */
-  
-  .exercise-card {
-    padding: 20px;
-  
-    border: 1px solid #252525;
-    border-radius: 18px;
-  
-    background: #111111;
-  }
-  
-  .exercise-header {
-    margin-bottom: 22px;
-  }
-  
-  .exercise-header h2 {
-    margin: 5px 0 0;
-  
-    font-size: 18px;
-  }
-  
-  
-  /* ========================================
+
+.exercise-card {
+  padding: 20px;
+
+  border: 1px solid #252525;
+  border-radius: 18px;
+
+  background: #111111;
+}
+
+.exercise-header {
+  margin-bottom: 22px;
+}
+
+.exercise-header h2 {
+  margin: 5px 0 0;
+
+  font-size: 18px;
+}
+
+
+/* ========================================
      CABECERA DE SERIES
      ======================================== */
-  
-  .sets-header,
-  .set-row {
-    display: grid;
-  
-    grid-template-columns:
-      40px
-      minmax(0, 1fr)
-      minmax(0, 1fr)
-      42px
-      38px;
-  
-    gap: 7px;
-  
-    align-items: center;
-  }
-  
-  .sets-header {
-    margin-bottom: 8px;
-  
-    color: #666666;
-  
-    font-size: 10px;
-    font-weight: 700;
-  
-    text-align: center;
-  }
-  
-  
-  /* ========================================
+
+.sets-header,
+.set-row {
+  display: grid;
+
+  grid-template-columns:
+    40px 65px minmax(0, 1fr) minmax(0, 1fr) 42px 38px;
+
+  gap: 7px;
+
+  align-items: center;
+}
+
+.previous-value {
+  font-size: 10px;
+}
+
+.complete-button {
+  width: 36px;
+  height: 40px;
+}
+
+.delete-set-button {
+  width: 32px;
+  height: 40px;
+
+  font-size: 19px;
+}
+
+.sets-header {
+  margin-bottom: 8px;
+
+  color: #666666;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* ========================================
      FILAS DE SERIES
      ======================================== */
-  
-  .set-row {
-    margin-bottom: 9px;
-  }
-  
-  .set-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    height: 44px;
-  
-    border-radius: 9px;
-  
-    background: #1d1d1d;
-  
-    font-size: 13px;
-    font-weight: 700;
-  }
-  
-  
-  /* ========================================
+
+.set-row {
+  margin-bottom: 9px;
+}
+
+.set-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 44px;
+
+  border-radius: 9px;
+
+  background: #1d1d1d;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ========================================
      INPUTS KG / REPETICIONES
      ======================================== */
-  
-  .set-row input {
-    width: 100%;
-    height: 44px;
-  
-    min-width: 0;
-  
-    padding: 0 6px;
-  
-    border: 1px solid #292929;
-    border-radius: 9px;
-  
-    outline: none;
-  
-    background: #181818;
-    color: #ffffff;
-  
-    font-size: 16px;
-    font-weight: 600;
-  
-    text-align: center;
-  }
-  
-  .set-row input:focus {
-    border-color: #666666;
-  }
-  
-  .set-row input::placeholder {
-    color: #555555;
-  }
-  
-  
-  /* Quitar flechas del input number en Chrome/Safari */
-  
-  .set-row input::-webkit-outer-spin-button,
-  .set-row input::-webkit-inner-spin-button {
-    margin: 0;
-  
-    -webkit-appearance: none;
-  }
-  
-  .set-row input[type='number'] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-  }
-  
-  
-  /* ========================================
+
+.set-row input {
+  width: 100%;
+  height: 44px;
+
+  min-width: 0;
+
+  padding: 0 6px;
+
+  border: 1px solid #292929;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #181818;
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.set-row input:focus {
+  border-color: #666666;
+}
+
+.set-row input::placeholder {
+  color: #555555;
+}
+
+
+/* Quitar flechas del input number en Chrome/Safari */
+
+.set-row input::-webkit-outer-spin-button,
+.set-row input::-webkit-inner-spin-button {
+  margin: 0;
+
+  -webkit-appearance: none;
+}
+
+.set-row input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+
+/* ========================================
      BOTÓN COMPLETAR SERIE
      ======================================== */
-  
-  .complete-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    width: 42px;
-    height: 42px;
-  
-    padding: 0;
-  
-    border: 1px solid #333333;
-    border-radius: 10px;
-  
-    background: #181818;
-    color: #666666;
-  
-    font-size: 17px;
-    font-weight: 700;
-  
-    cursor: pointer;
-  }
-  
-  .complete-button.active {
-    border-color: #ffffff;
-  
-    background: #ffffff;
-    color: #000000;
-  }
-  
-  
-  /* ========================================
+
+.complete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid #333333;
+  border-radius: 10px;
+
+  background: #181818;
+  color: #666666;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.complete-button.active {
+  border-color: #ffffff;
+
+  background: #ffffff;
+  color: #000000;
+}
+
+
+/* ========================================
      SERIE COMPLETADA
      ======================================== */
-  
-  .set-row.completed input,
-  .set-row.completed .set-number {
-    opacity: 0.6;
-  }
-  
-  
-  /* ========================================
+
+.set-row.completed input,
+.set-row.completed .set-number {
+  opacity: 0.6;
+}
+
+
+/* ========================================
      ELIMINAR SERIE
      ======================================== */
-  
-  .delete-set-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    width: 38px;
-    height: 42px;
-  
-    padding: 0;
-  
-    border: 1px solid #332323;
-    border-radius: 10px;
-  
-    background: #181111;
-    color: #b77777;
-  
-    font-size: 22px;
-    line-height: 1;
-  
-    cursor: pointer;
-  }
-  
-  .delete-set-button:hover:not(:disabled) {
-    background: #251515;
-    color: #ffffff;
-  }
-  
-  .delete-set-button:disabled {
-    opacity: 0.2;
-  
-    cursor: not-allowed;
-  }
-  
-  
-  /* ========================================
+
+.delete-set-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid #332323;
+  border-radius: 10px;
+
+  background: #181111;
+  color: #b77777;
+
+  font-size: 22px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.delete-set-button:hover:not(:disabled) {
+  background: #251515;
+  color: #ffffff;
+}
+
+.delete-set-button:disabled {
+  opacity: 0.2;
+
+  cursor: not-allowed;
+}
+
+
+/* ========================================
      AÑADIR SERIE
      ======================================== */
-  
-  .add-set-button {
-    width: 100%;
-  
-    margin-top: 8px;
-    padding: 12px;
-  
-    border: 1px solid #292929;
-    border-radius: 10px;
-  
-    background: transparent;
-    color: #ffffff;
-  
-    font-size: 12px;
-    font-weight: 700;
-  
-    cursor: pointer;
-  }
-  
-  .add-set-button:hover {
-    background: #181818;
-  }
-  
-  
-  /* ========================================
+
+.add-set-button {
+  width: 100%;
+
+  margin-top: 8px;
+  padding: 12px;
+
+  border: 1px solid #292929;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.add-set-button:hover {
+  background: #181818;
+}
+
+
+/* ========================================
      FINALIZAR ENTRENAMIENTO
      ======================================== */
-  
-  .finish-button {
-    width: 100%;
-  
-    margin-top: 28px;
-    padding: 16px;
-  
-    border: 0;
-    border-radius: 12px;
-  
-    background: #ffffff;
-    color: #000000;
-  
-    font-size: 14px;
-    font-weight: 800;
-  
-    cursor: pointer;
-  }
 
-  .previous-workout {
-    margin-bottom: 20px;
-    padding: 12px 14px;
-  
-    border: 1px solid #252525;
-    border-radius: 11px;
-  
-    background: #181818;
-  }
-  
-  .previous-label {
-    display: block;
-  
-    margin-bottom: 8px;
-  
-    color: #666666;
-  
-    font-size: 9px;
-    font-weight: 700;
-  
-    letter-spacing: 1.4px;
-  }
-  
-  .previous-sets {
-    display: flex;
-    flex-wrap: wrap;
-  
-    gap: 6px;
-  }
-  
-  .previous-set {
-    padding: 6px 8px;
-  
-    border-radius: 7px;
-  
-    background: #222222;
-    color: #cccccc;
-  
-    font-size: 11px;
-    font-weight: 600;
-  }
-  
-  
-  /* ========================================
+.finish-button {
+  width: 100%;
+
+  margin-top: 28px;
+  padding: 16px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: #ffffff;
+  color: #000000;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.previous-workout {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+
+  border: 1px solid #252525;
+  border-radius: 11px;
+
+  background: #181818;
+}
+
+.previous-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #666666;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+}
+
+.previous-sets {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 6px;
+}
+
+.previous-set {
+  padding: 6px 8px;
+
+  border-radius: 7px;
+
+  background: #222222;
+  color: #cccccc;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* ========================================
      ADAPTACIÓN PARA MÓVIL
      ======================================== */
-  
-  @media (max-width: 480px) {
-  
-    .page {
-      padding: 24px 14px 120px;
-    }
-  
-    .exercise-card {
-      padding: 16px 12px;
-    }
-  
-    .sets-header,
-    .set-row {
-      grid-template-columns:
-        34px
-        minmax(0, 1fr)
-        minmax(0, 1fr)
-        40px
-        36px;
-  
-      gap: 5px;
-    }
-  
-    .set-number {
-      height: 42px;
-    }
-  
-    .set-row input {
-      height: 42px;
-  
-      padding: 0 4px;
-  
-      font-size: 15px;
-    }
-  
-    .complete-button {
-      width: 40px;
-      height: 40px;
-    }
-  
-    .delete-set-button {
-      width: 36px;
-      height: 40px;
-    }
+
+@media (max-width: 480px) {
+
+  .page {
+    padding: 24px 14px 120px;
   }
+
+  .exercise-card {
+    padding: 16px 12px;
+  }
+
+  .sets-header,
+  .set-row {
+    grid-template-columns:
+      30px 54px minmax(0, 1fr) minmax(0, 1fr) 36px 32px;
+
+    gap: 4px;
+  }
+
+  .set-number {
+    height: 42px;
+  }
+
+  .set-row input {
+    height: 42px;
+
+    padding: 0 4px;
+
+    font-size: 15px;
+  }
+
+  .complete-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .delete-set-button {
+    width: 36px;
+    height: 40px;
+  }
+}

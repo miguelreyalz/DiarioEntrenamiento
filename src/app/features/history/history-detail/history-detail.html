@@ -1,0 +1,93 @@
+@if (session; as workout) {
+
+    <main class="page">
+  
+      <header class="header">
+  
+        <button
+          class="back-button"
+          (click)="goBack()"
+        >
+          ←
+        </button>
+  
+        <div>
+  
+          <span class="routine-name">
+            {{ workout.routineName }}
+          </span>
+  
+          <h1>
+            {{ workout.dayName }}
+          </h1>
+  
+          <span class="date">
+            {{ formatDate(workout.startedAt) }}
+          </span>
+  
+        </div>
+  
+      </header>
+  
+  
+      <div class="exercise-list">
+  
+        @for (
+          exerciseLog of workout.exercises;
+          track exerciseLog.exerciseId
+        ) {
+  
+          @if (
+            exerciseService.getExerciseById(exerciseLog.exerciseId);
+            as exercise
+          ) {
+  
+            <section class="exercise-card">
+  
+              <span class="muscle-group">
+                {{ exercise.muscleGroup }}
+              </span>
+  
+              <h2>
+                {{ exercise.name }}
+              </h2>
+  
+  
+              <div class="sets">
+  
+                @for (
+                  set of exerciseLog.sets;
+                  track set.id
+                ) {
+  
+                  @if (set.completed) {
+  
+                    <div class="set-row">
+  
+                      <span>
+                        Serie {{ set.setNumber }}
+                      </span>
+  
+                      <strong>
+                        {{ set.weight }} kg × {{ set.reps }}
+                      </strong>
+  
+                    </div>
+  
+                  }
+  
+                }
+  
+              </div>
+  
+            </section>
+  
+          }
+  
+        }
+  
+      </div>
+  
+    </main>
+  
+  }

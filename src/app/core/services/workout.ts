@@ -23,9 +23,11 @@ export class WorkoutService {
         day: RoutineDay
     ): WorkoutSession {
 
+        const sessionId = crypto.randomUUID();
+
         const session: WorkoutSession = {
 
-            id: crypto.randomUUID(),
+            id: sessionId,
 
             routineId: routine.id,
             routineDayId: day.id,
@@ -36,18 +38,30 @@ export class WorkoutService {
             startedAt: new Date().toISOString(),
             finishedAt: null,
 
-            exercises: day.exerciseIds.map(exerciseId => ({
-                exerciseId,
-                sets: [
-                    {
-                        id: crypto.randomUUID(),
-                        setNumber: 1,
-                        weight: null,
-                        reps: null,
-                        completed: false
-                    }
-                ]
-            }))
+            exercises: day.exerciseIds.map(exerciseId => {
+
+                const previousLog =
+                    this.getLastCompletedExerciseLog(exerciseId);
+
+                const numberOfSets =
+                    previousLog?.sets.filter(set => set.completed).length || 1;
+
+                return {
+                    exerciseId,
+
+                    sets: Array.from(
+                        { length: numberOfSets },
+                        (_, index) => ({
+                            id: crypto.randomUUID(),
+                            setNumber: index + 1,
+                            weight: null,
+                            reps: null,
+                            completed: false
+                        })
+                    )
+                };
+
+            })
         };
 
         this.sessionsSignal.update(sessions => [
@@ -58,6 +72,30 @@ export class WorkoutService {
         this.saveSessions();
 
         return session;
+    }
+
+    private getLastCompletedExerciseLog(exerciseId: string) {
+
+        const previousSessions = this.sessionsSignal()
+            .filter(session =>
+                session.finishedAt !== null &&
+                session.exercises.some(
+                    exercise => exercise.exerciseId === exerciseId
+                )
+            )
+            .sort(
+                (a, b) =>
+                    new Date(b.startedAt).getTime() -
+                    new Date(a.startedAt).getTime()
+            );
+
+        if (previousSessions.length === 0) {
+            return undefined;
+        }
+
+        return previousSessions[0].exercises.find(
+            exercise => exercise.exerciseId === exerciseId
+        );
     }
 
 

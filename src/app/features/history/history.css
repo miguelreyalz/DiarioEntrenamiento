@@ -1,0 +1,163 @@
+.page {
+    max-width: 600px;
+    min-height: 100vh;
+  
+    margin: 0 auto;
+    padding: 32px 20px 110px;
+  }
+  
+  .header {
+    margin-bottom: 38px;
+  }
+  
+  .section-label {
+    color: #777777;
+  
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+  }
+  
+  h1 {
+    margin: 6px 0 0;
+  
+    font-size: 28px;
+  }
+  
+  
+  /* HISTORIAL */
+  
+  .history-list {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 10px;
+  }
+  
+  .history-card {
+    display: flex;
+    align-items: center;
+  
+    gap: 15px;
+  
+    padding: 17px;
+  
+    border: 1px solid #252525;
+    border-radius: 16px;
+  
+    background: #111111;
+    color: #ffffff;
+  
+    text-decoration: none;
+  }
+  
+  .history-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 78px;
+    min-height: 48px;
+  
+    flex-shrink: 0;
+  
+    padding: 7px;
+  
+    border-radius: 11px;
+  
+    background: #202020;
+  
+    color: #bbbbbb;
+  
+    font-size: 11px;
+    font-weight: 700;
+  
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .history-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  
+    min-width: 0;
+  
+    gap: 4px;
+  }
+  
+  .history-info strong {
+    font-size: 15px;
+  }
+  
+  .history-info span {
+    color: #777777;
+  
+    font-size: 11px;
+  }
+  
+  .arrow {
+    color: #777777;
+  
+    font-size: 26px;
+  }
+  
+  
+  /* SIN HISTORIAL */
+  
+  .empty-state {
+    padding: 44px 24px;
+  
+    border: 1px solid #252525;
+    border-radius: 18px;
+  
+    background: #111111;
+  
+    text-align: center;
+  }
+  
+  .empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 52px;
+    height: 52px;
+  
+    margin: 0 auto 18px;
+  
+    border-radius: 50%;
+  
+    background: #202020;
+  
+    font-size: 23px;
+  }
+  
+  .empty-state h2 {
+    margin: 0 0 9px;
+  
+    font-size: 19px;
+  }
+  
+  .empty-state p {
+    margin: 0 0 24px;
+  
+    color: #888888;
+  
+    font-size: 14px;
+  }
+  
+  .primary-button {
+    display: block;
+  
+    padding: 15px;
+  
+    border-radius: 11px;
+  
+    background: #ffffff;
+    color: #000000;
+  
+    font-weight: 700;
+  
+    text-decoration: none;
+  }

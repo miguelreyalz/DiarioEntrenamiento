@@ -1,1 +1,93 @@
-<p>history works!</p>
+<main class="page">
+
+    <header class="header">
+  
+      <span class="section-label">
+        GYM DIARY
+      </span>
+  
+      <h1>
+        Historial
+      </h1>
+  
+    </header>
+  
+  
+    @if (completedSessions().length === 0) {
+  
+      <section class="empty-state">
+  
+        <div class="empty-icon">
+          ↻
+        </div>
+  
+        <h2>
+          Todavía no hay entrenamientos
+        </h2>
+  
+        <p>
+          Los entrenamientos que finalices aparecerán aquí.
+        </p>
+  
+        <a
+          routerLink="/"
+          class="primary-button"
+        >
+          Ir a entrenar
+        </a>
+  
+      </section>
+  
+    } @else {
+  
+      <section class="history-list">
+  
+        @for (
+          workout of completedSessions();
+          track workout.id
+        ) {
+  
+          <a
+            class="history-card"
+            [routerLink]="['/history', workout.id]"
+          >
+  
+            <div class="history-date">
+              {{ formatDate(workout.startedAt) }}
+            </div>
+  
+  
+            <div class="history-info">
+  
+              <strong>
+                {{ workout.dayName }}
+              </strong>
+  
+              <span>
+                {{ workout.routineName }}
+              </span>
+  
+              <span>
+                {{ workout.exercises.length }}
+                {{ workout.exercises.length === 1
+                  ? 'ejercicio'
+                  : 'ejercicios'
+                }}
+              </span>
+  
+            </div>
+  
+  
+            <span class="arrow">
+              ›
+            </span>
+  
+          </a>
+  
+        }
+  
+      </section>
+  
+    }
+  
+  </main>

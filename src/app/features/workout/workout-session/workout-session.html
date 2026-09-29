@@ -1,244 +1,242 @@
 @if (session; as workout) {
 
-    <main class="page">
-  
-      <!-- CABECERA -->
-      <header class="header">
-  
-        <button
-          class="back-button"
-          (click)="cancel()"
-          aria-label="Volver"
-        >
-          ←
-        </button>
-  
+<main class="page">
+
+  <!-- CABECERA -->
+  <header class="header">
+
+    <button class="back-button" (click)="cancel()" aria-label="Volver">
+      ←
+    </button>
+
+    <div>
+
+      <span class="routine-name">
+        {{ workout.routineName }}
+      </span>
+
+      <h1>
+        {{ workout.dayName }}
+      </h1>
+
+    </div>
+
+  </header>
+
+
+  <!-- ESTADO DEL ENTRENAMIENTO -->
+  <section class="workout-info">
+
+    <span>
+      ENTRENAMIENTO EN CURSO
+    </span>
+
+  </section>
+
+
+  <!-- EJERCICIOS -->
+  <div class="exercise-list">
+
+    @for (
+    exerciseLog of workout.exercises;
+    track exerciseLog.exerciseId
+    ) {
+
+    @if (
+    exerciseService.getExerciseById(exerciseLog.exerciseId);
+    as exercise
+    ) {
+
+    <section class="exercise-card">
+
+      <!-- NOMBRE DEL EJERCICIO -->
+      <div class="exercise-header">
+
         <div>
-  
-          <span class="routine-name">
-            {{ workout.routineName }}
+
+          <span class="muscle-group">
+            {{ exercise.muscleGroup }}
           </span>
-  
-          <h1>
-            {{ workout.dayName }}
-          </h1>
-  
+
+          <h2>
+            {{ exercise.name }}
+          </h2>
+
         </div>
-  
-      </header>
-  
-  
-      <!-- ESTADO DEL ENTRENAMIENTO -->
-      <section class="workout-info">
-  
-        <span>
-          ENTRENAMIENTO EN CURSO
+
+      </div>
+
+      @if (getPreviousLog(exercise.id); as previousLog) {
+
+      <div class="previous-workout">
+
+        <span class="previous-label">
+          ÚLTIMA VEZ
         </span>
-  
-      </section>
-  
-  
-      <!-- EJERCICIOS -->
-      <div class="exercise-list">
-  
-        @for (
-          exerciseLog of workout.exercises;
-          track exerciseLog.exerciseId
-        ) {
-  
+
+        <div class="previous-sets">
+
+          @for (previousSet of previousLog.sets; track previousSet.id) {
+
           @if (
-            exerciseService.getExerciseById(exerciseLog.exerciseId);
-            as exercise
+          previousSet.completed &&
+          previousSet.weight !== null &&
+          previousSet.reps !== null
           ) {
-  
-            <section class="exercise-card">
-  
-              <!-- NOMBRE DEL EJERCICIO -->
-              <div class="exercise-header">
 
-                <div>
-              
-                  <span class="muscle-group">
-                    {{ exercise.muscleGroup }}
-                  </span>
-              
-                  <h2>
-                    {{ exercise.name }}
-                  </h2>
-              
-                </div>
-              
-              </div>
+          <span class="previous-set">
+            {{ previousSet.weight }} kg × {{ previousSet.reps }}
+          </span>
 
-              @if (getPreviousLog(exercise.id); as previousLog) {
+          }
 
-                <div class="previous-workout">
-              
-                  <span class="previous-label">
-                    ÚLTIMA VEZ
-                  </span>
-              
-                  <div class="previous-sets">
-              
-                    @for (previousSet of previousLog.sets; track previousSet.id) {
-              
-                      @if (
-                        previousSet.completed &&
-                        previousSet.weight !== null &&
-                        previousSet.reps !== null
-                      ) {
-              
-                        <span class="previous-set">
-                          {{ previousSet.weight }} kg × {{ previousSet.reps }}
-                        </span>
-              
-                      }
-              
-                    }
-              
-                  </div>
-              
-                </div>
-              
-              }
-  
-  
-              <!-- CABECERA DE SERIES -->
-              <div class="sets-header">
-  
-                <span>SERIE</span>
-                <span>KG</span>
-                <span>REPS</span>
-  
-                <!-- Columna completar -->
-                <span></span>
-  
-                <!-- Columna eliminar -->
-                <span></span>
-  
-              </div>
-  
-  
-              <!-- SERIES -->
-              <div class="sets">
-  
-                @for (
-                  set of exerciseLog.sets;
-                  track set.id
-                ) {
-  
-                  <div
-                    class="set-row"
-                    [class.completed]="set.completed"
-                  >
-  
-                    <!-- Nº DE SERIE -->
-                    <div class="set-number">
-                      {{ set.setNumber }}
-                    </div>
-  
-  
-                    <!-- PESO -->
-                    <input
-                      type="number"
-                      inputmode="decimal"
-                      min="0"
-                      step="0.5"
-                      placeholder="0"
-                      [ngModel]="set.weight"
-                      (ngModelChange)="
+          }
+
+        </div>
+
+      </div>
+
+      }
+
+
+      <!-- CABECERA DE SERIES -->
+      <div class="sets-header">
+
+        <span>SERIE</span>
+        <span>ANTERIOR</span>
+        <span>KG</span>
+        <span>REPS</span>
+        <span></span>
+        <span></span>
+
+      </div>
+
+
+      <!-- SERIES -->
+      <div class="sets">
+
+        @for (
+        set of exerciseLog.sets;
+        track set.id
+        ) {
+
+        <div class="set-row" [class.completed]="set.completed">
+
+          <!-- Nº DE SERIE -->
+          <div class="set-number">
+            {{ set.setNumber }}
+          </div>
+
+          @if (getPreviousLog(exercise.id); as previousLog) {
+
+          @if (previousLog.sets[$index]; as previousSet) {
+
+          <div class="previous-value">
+
+            @if (
+            previousSet.completed &&
+            previousSet.weight !== null &&
+            previousSet.reps !== null
+            ) {
+
+            {{ previousSet.weight }} × {{ previousSet.reps }}
+
+            } @else {
+
+            —
+
+            }
+
+          </div>
+
+          } @else {
+
+          <div class="previous-value">
+            —
+          </div>
+
+          }
+
+          } @else {
+
+          <div class="previous-value">
+            —
+          </div>
+
+          }
+
+
+          <!-- PESO -->
+          <input type="number" inputmode="decimal" min="0" step="0.5" placeholder="0" [ngModel]="set.weight"
+            (ngModelChange)="
                         updateSet(
                           exercise.id,
                           set.id,
                           $event,
                           set.reps
                         )
-                      "
-                    >
-  
-  
-                    <!-- REPETICIONES -->
-                    <input
-                      type="number"
-                      inputmode="numeric"
-                      min="0"
-                      step="1"
-                      placeholder="0"
-                      [ngModel]="set.reps"
-                      (ngModelChange)="
+                      ">
+
+
+          <!-- REPETICIONES -->
+          <input type="number" inputmode="numeric" min="0" step="1" placeholder="0" [ngModel]="set.reps"
+            (ngModelChange)="
                         updateSet(
                           exercise.id,
                           set.id,
                           set.weight,
                           $event
                         )
-                      "
-                    >
-  
-  
-                    <!-- COMPLETAR SERIE -->
-                    <button
-                      class="complete-button"
-                      [class.active]="set.completed"
-                      (click)="
+                      ">
+
+
+          <!-- COMPLETAR SERIE -->
+          <button class="complete-button" [class.active]="set.completed" (click)="
                         toggleCompleted(
                           exercise.id,
                           set.id
                         )
-                      "
-                      aria-label="Completar serie"
-                    >
-                      ✓
-                    </button>
-  
-  
-                    <!-- ELIMINAR SERIE -->
-                    <button
-                      class="delete-set-button"
-                      [disabled]="exerciseLog.sets.length === 1"
-                      (click)="
+                      " aria-label="Completar serie">
+            ✓
+          </button>
+
+
+          <!-- ELIMINAR SERIE -->
+          <button class="delete-set-button" [disabled]="exerciseLog.sets.length === 1" (click)="
                         deleteSet(
                           exercise.id,
                           set.id
                         )
-                      "
-                      aria-label="Eliminar serie"
-                    >
-                      ×
-                    </button>
-  
-                  </div>
-  
-                }
-  
-              </div>
-  
-  
-              <!-- AÑADIR SERIE -->
-              <button
-                class="add-set-button"
-                (click)="addSet(exercise.id)"
-              >
-                + Añadir serie
-              </button>
-  
-            </section>
-  
-          }
-  
+                      " aria-label="Eliminar serie">
+            ×
+          </button>
+
+        </div>
+
         }
-  
+
       </div>
-  
-  
-      <!-- FINALIZAR ENTRENAMIENTO -->
-      <button
-        class="finish-button"
-        (click)="finishWorkout()"
-      >
-        Finalizar entrenamiento
+
+
+      <!-- AÑADIR SERIE -->
+      <button class="add-set-button" (click)="addSet(exercise.id)">
+        + Añadir serie
       </button>
-  
-    </main>
-  
-  }
+
+    </section>
+
+    }
+
+    }
+
+  </div>
+
+
+  <!-- FINALIZAR ENTRENAMIENTO -->
+  <button class="finish-button" (click)="finishWorkout()">
+    Finalizar entrenamiento
+  </button>
+
+</main>
+
+}
