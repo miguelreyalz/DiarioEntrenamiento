@@ -80,6 +80,7 @@
                     {{ $index + 1 }}
                 </div>
 
+
                 <div class="exercise-info">
 
                     <strong>
@@ -92,9 +93,26 @@
 
                 </div>
 
-                <span class="exercise-arrow">
-                    ›
-                </span>
+
+                <div class="exercise-actions">
+
+                    <button class="order-button" [disabled]="$first" (click)="moveExerciseUp(exercise.id)"
+                        aria-label="Subir ejercicio">
+                        ↑
+                    </button>
+
+
+                    <button class="order-button" [disabled]="$last" (click)="moveExerciseDown(exercise.id)"
+                        aria-label="Bajar ejercicio">
+                        ↓
+                    </button>
+
+
+                    <button class="remove-button" (click)="removeExercise(exercise.id)" aria-label="Eliminar ejercicio">
+                        ×
+                    </button>
+
+                </div>
 
             </article>
 

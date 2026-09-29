@@ -172,4 +172,105 @@ export class RoutineService {
     this.saveRoutines();
   }
 
+  removeExerciseFromDay(
+    routineId: string,
+    dayId: string,
+    exerciseId: string
+  ): void {
+
+    this.routinesSignal.update(routines =>
+      routines.map(routine => {
+
+        if (routine.id !== routineId) {
+          return routine;
+        }
+
+        return {
+          ...routine,
+
+          days: routine.days.map(day => {
+
+            if (day.id !== dayId) {
+              return day;
+            }
+
+            return {
+              ...day,
+              exerciseIds: day.exerciseIds.filter(
+                id => id !== exerciseId
+              )
+            };
+          })
+        };
+      })
+    );
+
+    this.saveRoutines();
+  }
+
+
+  moveExercise(
+    routineId: string,
+    dayId: string,
+    exerciseId: string,
+    direction: 'up' | 'down'
+  ): void {
+
+    this.routinesSignal.update(routines =>
+      routines.map(routine => {
+
+        if (routine.id !== routineId) {
+          return routine;
+        }
+
+        return {
+          ...routine,
+
+          days: routine.days.map(day => {
+
+            if (day.id !== dayId) {
+              return day;
+            }
+
+            const exerciseIds = [...day.exerciseIds];
+
+            const currentIndex =
+              exerciseIds.indexOf(exerciseId);
+
+            if (currentIndex === -1) {
+              return day;
+            }
+
+            const newIndex =
+              direction === 'up'
+                ? currentIndex - 1
+                : currentIndex + 1;
+
+            if (
+              newIndex < 0 ||
+              newIndex >= exerciseIds.length
+            ) {
+              return day;
+            }
+
+            [
+              exerciseIds[currentIndex],
+              exerciseIds[newIndex]
+            ] = [
+                exerciseIds[newIndex],
+                exerciseIds[currentIndex]
+              ];
+
+            return {
+              ...day,
+              exerciseIds
+            };
+          })
+        };
+      })
+    );
+
+    this.saveRoutines();
+  }
+
 }

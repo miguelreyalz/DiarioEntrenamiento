@@ -49,4 +49,78 @@ export class RoutineDayDetail {
   goBack(): void {
     this.router.navigate(['/routines']);
   }
+
+  removeExercise(exerciseId: string): void {
+
+    if (!this.routine || !this.day) {
+      return;
+    }
+  
+    const exercise =
+      this.exerciseService.getExerciseById(exerciseId);
+  
+    const confirmed = window.confirm(
+      `¿Eliminar ${exercise?.name ?? 'este ejercicio'} del entrenamiento?`
+    );
+  
+    if (!confirmed) {
+      return;
+    }
+  
+    this.routineService.removeExerciseFromDay(
+      this.routine.id,
+      this.day.id,
+      exerciseId
+    );
+  
+    this.reloadDay();
+  }
+  
+  
+  moveExerciseUp(exerciseId: string): void {
+  
+    if (!this.routine || !this.day) {
+      return;
+    }
+  
+    this.routineService.moveExercise(
+      this.routine.id,
+      this.day.id,
+      exerciseId,
+      'up'
+    );
+  
+    this.reloadDay();
+  }
+  
+  
+  moveExerciseDown(exerciseId: string): void {
+  
+    if (!this.routine || !this.day) {
+      return;
+    }
+  
+    this.routineService.moveExercise(
+      this.routine.id,
+      this.day.id,
+      exerciseId,
+      'down'
+    );
+  
+    this.reloadDay();
+  }
+  
+  
+  private reloadDay(): void {
+  
+    if (!this.routine || !this.day) {
+      return;
+    }
+  
+    this.day =
+      this.routineService.getRoutineDay(
+        this.routine.id,
+        this.day.id
+      );
+  }
 }

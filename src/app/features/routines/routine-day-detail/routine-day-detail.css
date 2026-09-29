@@ -197,3 +197,62 @@
     text-align: center;
     text-decoration: none;
   }
+
+  .exercise-actions {
+    display: flex;
+    align-items: center;
+  
+    gap: 5px;
+  
+    flex-shrink: 0;
+  }
+  
+  .order-button,
+  .remove-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 32px;
+    height: 32px;
+  
+    padding: 0;
+  
+    border-radius: 8px;
+  
+    font-size: 15px;
+  
+    cursor: pointer;
+  }
+  
+  .order-button {
+    border: 1px solid #292929;
+  
+    background: #181818;
+    color: #aaaaaa;
+  }
+  
+  .order-button:hover:not(:disabled) {
+    background: #222222;
+    color: #ffffff;
+  }
+  
+  .order-button:disabled {
+    opacity: 0.2;
+  
+    cursor: not-allowed;
+  }
+  
+  .remove-button {
+    border: 1px solid #332323;
+  
+    background: #181111;
+    color: #b77777;
+  
+    font-size: 20px;
+  }
+  
+  .remove-button:hover {
+    background: #251515;
+    color: #ffffff;
+  }
