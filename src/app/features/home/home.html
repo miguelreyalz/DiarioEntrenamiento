@@ -18,6 +18,54 @@
 
     </header>
 
+    @if (activeSession(); as session) {
+
+    <section class="active-workout-section">
+
+        <span class="section-label">
+            ENTRENAMIENTO EN CURSO
+        </span>
+
+
+        <div class="active-workout-card">
+
+            <div class="active-indicator">
+
+                <span class="active-dot"></span>
+
+                En curso
+
+            </div>
+
+
+            <h2>
+                {{ session.dayName }}
+            </h2>
+
+
+            <span class="active-routine-name">
+                {{ session.routineName }}
+            </span>
+
+
+            <div class="active-workout-actions">
+
+                <button class="continue-button" (click)="continueWorkout()">
+                    Continuar entrenamiento
+                </button>
+
+
+                <button class="discard-button" (click)="discardWorkout()">
+                    Descartar
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    }
 
     <section class="training-section">
 
@@ -49,7 +97,8 @@
 
             @for (day of routine.days; track day.id) {
 
-            <button class="training-card" (click)="startWorkout(day)">
+            <button class="training-card" [class.disabled]="activeSession()" [disabled]="!!activeSession()"
+                (click)="startWorkout(day)">
 
                 <div class="day-number">
                     {{ ($index + 1).toString().padStart(2, '0') }}

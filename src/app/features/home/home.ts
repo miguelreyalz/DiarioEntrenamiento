@@ -20,13 +20,39 @@ export class Home {
     )
   );
 
+
+  readonly activeSession = computed(() =>
+    this.workoutService.sessions().find(
+      session => session.finishedAt === null
+    )
+  );
+
+
   constructor(
     private readonly routineService: RoutineService,
     private readonly workoutService: WorkoutService,
     private readonly router: Router
   ) {}
 
+
   startWorkout(day: RoutineDay): void {
+
+    /*
+     * Si ya existe un entrenamiento activo,
+     * continuamos ese entrenamiento.
+     */
+    const activeSession = this.activeSession();
+
+    if (activeSession) {
+
+      this.router.navigate([
+        '/workout',
+        activeSession.id
+      ]);
+
+      return;
+    }
+
 
     const routine = this.activeRoutine();
 
@@ -34,14 +60,54 @@ export class Home {
       return;
     }
 
-    const session = this.workoutService.startWorkout(
-      routine,
-      day
-    );
+
+    const session =
+      this.workoutService.startWorkout(
+        routine,
+        day
+      );
+
 
     this.router.navigate([
       '/workout',
       session.id
     ]);
+  }
+
+
+  continueWorkout(): void {
+
+    const session = this.activeSession();
+
+    if (!session) {
+      return;
+    }
+
+    this.router.navigate([
+      '/workout',
+      session.id
+    ]);
+  }
+
+
+  discardWorkout(): void {
+
+    const session = this.activeSession();
+
+    if (!session) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      '¿Quieres descartar este entrenamiento? Se perderán todas las series registradas.'
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    this.workoutService.deleteSession(
+      session.id
+    );
   }
 }

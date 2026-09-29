@@ -354,4 +354,22 @@ export class WorkoutService {
             exercise => exercise.exerciseId === exerciseId
         );
     }
+
+    getActiveSession(): WorkoutSession | undefined {
+        return this.sessionsSignal()
+            .find(session => session.finishedAt === null);
+    }
+
+
+    deleteSession(sessionId: string): void {
+
+        this.sessionsSignal.update(sessions =>
+            sessions.filter(
+                session => session.id !== sessionId
+            )
+        );
+
+        this.saveSessions();
+    }
+
 }

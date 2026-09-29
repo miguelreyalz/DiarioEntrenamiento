@@ -447,3 +447,12 @@ h1 {
     height: 40px;
   }
 }
+
+.autosave-info {
+  margin-top: -12px;
+  margin-bottom: 22px;
+
+  color: #555555;
+
+  font-size: 10px;
+}

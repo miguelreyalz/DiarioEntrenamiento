@@ -76,9 +76,22 @@ export class WorkoutSession {
 
   finishWorkout(): void {
 
-    const confirmed = window.confirm(
-      '¿Quieres finalizar el entrenamiento?'
-    );
+    const session = this.session;
+
+    if (!session) {
+      return;
+    }
+
+    const hasIncompleteSets =
+      session.exercises.some(exercise =>
+        exercise.sets.some(set => !set.completed)
+      );
+
+    const message = hasIncompleteSets
+      ? 'Hay series sin completar. ¿Quieres finalizar el entrenamiento igualmente? Las series no completadas no contarán en tu historial.'
+      : '¿Quieres finalizar el entrenamiento?';
+
+    const confirmed = window.confirm(message);
 
     if (!confirmed) {
       return;
@@ -88,7 +101,7 @@ export class WorkoutSession {
       this.sessionId
     );
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/history']);
   }
 
   deleteSet(
@@ -111,7 +124,7 @@ export class WorkoutSession {
   }
 
 
-  cancel(): void {
+  exitWorkout(): void {
     this.router.navigate(['/']);
   }
 }
