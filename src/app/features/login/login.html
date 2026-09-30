@@ -1,0 +1,80 @@
+<main class="login-page">
+
+    <section class="login-container">
+  
+      <div class="brand">
+        GYM DIARY
+      </div>
+  
+      <h1>
+        Bienvenido
+      </h1>
+  
+      <p class="subtitle">
+        Inicia sesión para acceder a tus entrenamientos.
+      </p>
+  
+  
+      <form
+        class="login-form"
+        (ngSubmit)="login()"
+      >
+  
+        <div class="field">
+  
+          <label for="email">
+            EMAIL
+          </label>
+  
+          <input
+            id="email"
+            type="email"
+            name="email"
+            autocomplete="email"
+            [(ngModel)]="email"
+            placeholder="tu@email.com"
+          >
+  
+        </div>
+  
+  
+        <div class="field">
+  
+          <label for="password">
+            CONTRASEÑA
+          </label>
+  
+          <input
+            id="password"
+            type="password"
+            name="password"
+            autocomplete="current-password"
+            [(ngModel)]="password"
+            placeholder="••••••••"
+          >
+  
+        </div>
+  
+  
+        @if (errorMessage) {
+  
+          <div class="error-message">
+            {{ errorMessage }}
+          </div>
+  
+        }
+  
+  
+        <button
+          class="login-button"
+          type="submit"
+          [disabled]="loading"
+        >
+          {{ loading ? 'Entrando...' : 'Iniciar sesión' }}
+        </button>
+  
+      </form>
+  
+    </section>
+  
+  </main>

@@ -1,0 +1,540 @@
+# Gym Diary - GitHub Copilot Instructions
+
+## Proyecto
+
+Gym Diary es una aplicación personal para registrar entrenamientos de gimnasio.
+
+Está desarrollada principalmente para utilizarse desde iPhone, aunque también debe funcionar correctamente en PC.
+
+El objetivo final es convertirla en una PWA instalable desde Safari en iPhone sin necesidad de publicarla en App Store.
+
+## Stack
+
+- Angular 22.2
+- TypeScript
+- CSS
+- Node.js
+- npm
+- Supabase
+- PostgreSQL
+- Supabase Auth
+- Supabase Row Level Security (RLS)
+
+La aplicación utiliza componentes standalone de Angular.
+
+---
+
+## Regla principal
+
+ANTES DE MODIFICAR CÓDIGO:
+
+1. Inspecciona los archivos existentes relacionados con la tarea.
+2. No asumas nombres de clases, modelos, propiedades, rutas o métodos.
+3. El código actual del repositorio es la fuente de verdad.
+4. Conserva las funcionalidades existentes.
+5. Haz cambios pequeños y progresivos.
+6. Ejecuta el build después de cambios importantes.
+7. Corrige errores TypeScript antes de continuar.
+
+No reescribas servicios completos innecesariamente si basta con modificar una parte.
+
+---
+
+# FUNCIONAMIENTO DE GYM DIARY
+
+## Rutinas
+
+El usuario puede crear rutinas.
+
+Solo existe una rutina activa al mismo tiempo.
+
+El usuario cambia aproximadamente de rutina una vez al mes, aunque no en fechas exactas.
+
+Las rutinas anteriores deben conservarse como archivadas para poder consultarlas posteriormente.
+
+Una rutina contiene varios entrenamientos (RoutineDay).
+
+Ejemplo:
+
+Rutina Octubre
+
+- Pecho + Bíceps
+- Espalda + Tríceps
+- Cuádriceps
+- Femoral + Hombro
+
+---
+
+## Selección del entrenamiento
+
+NO debe asignarse automáticamente un entrenamiento según el día de la semana.
+
+El usuario no entrena siempre los mismos días.
+
+Desde Home, el usuario elige manualmente qué entrenamiento de su rutina activa quiere realizar.
+
+---
+
+## RoutineDay
+
+Un RoutineDay representa un entrenamiento dentro de una rutina.
+
+Debe poder:
+
+- crearse
+- eliminarse
+- renombrarse
+- reordenarse
+- contener ejercicios
+- añadir ejercicios
+- eliminar ejercicios
+- reordenar ejercicios
+
+---
+
+## Ejercicios
+
+Cada ejercicio contiene como mínimo:
+
+- id
+- name
+- muscleGroup
+
+Los ejercicios pueden asignarse a los entrenamientos de una rutina.
+
+---
+
+## WorkoutSession
+
+WorkoutSession representa una ejecución REAL de un entrenamiento.
+
+Diferenciar siempre:
+
+Routine
+= plantilla completa
+
+RoutineDay
+= entrenamiento definido dentro de la rutina
+
+WorkoutSession
+= entrenamiento realizado en una fecha concreta
+
+Descartar una WorkoutSession NO debe eliminar el RoutineDay.
+
+---
+
+## Series
+
+Durante un entrenamiento el usuario puede:
+
+- añadir series
+- eliminar series
+- introducir peso
+- introducir repeticiones
+- marcar series como completadas
+
+Los inputs de peso deben permitir decimales.
+
+---
+
+## Entrenamiento activo
+
+Solo debe existir conceptualmente una sesión activa que el usuario esté realizando.
+
+Una sesión activa normalmente tiene:
+
+finishedAt === null
+
+Desde Home se puede:
+
+- continuar entrenamiento
+- descartar entrenamiento
+
+Descartar elimina la sesión, NO el entrenamiento de la rutina.
+
+---
+
+# HISTORIAL
+
+Los entrenamientos finalizados deben conservarse.
+
+Debe poder consultarse:
+
+- fecha
+- rutina
+- entrenamiento
+- ejercicios
+- series
+- peso
+- repeticiones
+
+Modificar una rutina posteriormente NO debe modificar el historial antiguo.
+
+Por ello, los entrenamientos realizados pueden almacenar snapshots como:
+
+- routineName
+- dayName
+- exerciseName
+- muscleGroup
+
+---
+
+# PROGRESIÓN
+
+Actualmente NO queremos gráficas de progresión.
+
+No implementar gráficas salvo petición explícita.
+
+La arquitectura sí debe permitir consultar en el futuro el historial de un ejercicio.
+
+---
+
+# DISEÑO
+
+Mantener el diseño actual.
+
+Características:
+
+- dark mode
+- minimalista
+- mobile-first
+- pensado especialmente para iPhone
+- tarjetas oscuras
+- bordes sutiles
+- controles grandes
+- interfaz limpia
+
+Antes de crear estilos nuevos, revisar los CSS existentes para mantener coherencia.
+
+---
+
+# NAVEGACIÓN
+
+Existe una BottomNav compartida.
+
+Normalmente contiene:
+
+- Inicio
+- Rutinas
+- Historial
+- Progreso
+
+La BottomNav NO debe aparecer en:
+
+/login
+
+---
+
+# SUPABASE
+
+La aplicación se está migrando actualmente desde localStorage hacia Supabase.
+
+NO eliminar todavía localStorage de forma masiva.
+
+La migración debe hacerse progresivamente.
+
+## Tablas creadas
+
+Actualmente Supabase tiene aproximadamente:
+
+routines
+
+routine_days
+
+exercises
+
+routine_day_exercises
+
+workout_sessions
+
+workout_exercises
+
+workout_sets
+
+---
+
+## Relaciones
+
+Conceptualmente:
+
+routines
+    |
+    └── routine_days
+            |
+            └── routine_day_exercises
+                    |
+                    └── exercises
+
+
+workout_sessions
+    |
+    └── workout_exercises
+            |
+            └── workout_sets
+
+---
+
+# USUARIOS
+
+Supabase Auth se utiliza para autenticación.
+
+Las tablas raíz tienen user_id.
+
+Actualmente:
+
+routines.user_id
+
+exercises.user_id
+
+workout_sessions.user_id
+
+Las tablas hijas se protegen mediante sus relaciones.
+
+---
+
+# ROW LEVEL SECURITY
+
+RLS está habilitado.
+
+Las políticas utilizan:
+
+auth.uid()
+
+para comprobar que los datos pertenecen al usuario autenticado.
+
+NO desactivar RLS para solucionar errores.
+
+Si ocurre un error relacionado con permisos, revisar primero:
+
+- usuario autenticado
+- auth.uid()
+- user_id
+- políticas
+- relaciones
+- INSERT
+- UPDATE
+
+---
+
+# SEGURIDAD
+
+NUNCA incluir en Angular:
+
+- contraseña PostgreSQL
+- Database Password
+- service_role key
+- Supabase Secret Key
+
+Angular únicamente puede utilizar:
+
+- Project URL
+- Publishable Key
+
+Estas pueden estar en los environments del frontend.
+
+La seguridad de los datos depende de Auth + RLS.
+
+Nunca mostrar passwords en logs.
+
+Nunca hacer commit de secretos.
+
+---
+
+# SUPABASE CLIENT
+
+El proyecto utiliza:
+
+@supabase/supabase-js
+
+Existe/debe existir:
+
+src/app/core/services/supabase.ts
+
+SupabaseService debe proporcionar el cliente de Supabase al resto de la aplicación.
+
+---
+
+# AUTENTICACIÓN
+
+Existe una pantalla:
+
+/login
+
+El login utiliza:
+
+supabase.auth.signInWithPassword()
+
+Las demás rutas están o deben estar protegidas mediante authGuard.
+
+La ruta:
+
+/login
+
+NO debe estar protegida por authGuard.
+
+---
+
+# PROBLEMA ACTUAL PRIORITARIO
+
+Actualmente existe un problema con el login.
+
+El usuario introduce un email y contraseña que considera correctos, pero Gym Diary muestra que son incorrectos.
+
+IMPORTANTE:
+
+La implementación del login puede estar transformando cualquier error de Supabase en el mensaje:
+
+"Email o contraseña incorrectos."
+
+Por tanto, NO asumir que las credenciales son incorrectas.
+
+Antes de modificar nada:
+
+1. Revisar login.ts.
+2. Revisar login.html.
+3. Revisar SupabaseService.
+4. Revisar authGuard.
+5. Revisar app.routes.ts.
+6. Revisar environment.ts.
+7. Revisar environment.development.ts.
+8. Revisar app.ts y app.html si afectan al login.
+9. Comprobar qué environment está utilizando Angular.
+10. Obtener el error REAL devuelto por Supabase.
+
+No modificar la base de datos hasta conocer el error real.
+
+---
+
+# ORDEN DE MIGRACIÓN A SUPABASE
+
+Cuando el login funcione correctamente:
+
+## Fase 1
+
+Migrar ExerciseService.
+
+Comprobar:
+
+- cargar ejercicios
+- crear ejercicios
+- usuario propietario
+- relaciones existentes
+
+## Fase 2
+
+Migrar RoutineService.
+
+Debe conservar:
+
+- rutina activa
+- rutinas archivadas
+- RoutineDays
+- orden de RoutineDays
+- ejercicios asignados
+- orden de ejercicios
+- renombrado
+- eliminación
+
+## Fase 3
+
+Migrar WorkoutService.
+
+Debe conservar:
+
+- iniciar entrenamiento
+- sesión activa
+- añadir/eliminar series
+- kg
+- reps
+- completar series
+- finalizar
+- descartar
+- historial
+
+## Fase 4
+
+Eliminar progresivamente la dependencia principal de localStorage únicamente después de verificar que Supabase funciona correctamente.
+
+---
+
+# LOCALSTORAGE
+
+La aplicación originalmente almacenaba los datos en localStorage.
+
+Se conoce al menos:
+
+gym-diary-workouts
+
+Antes de modificar la persistencia, inspeccionar RoutineService, ExerciseService y WorkoutService para comprobar las claves reales.
+
+No borrar los datos existentes automáticamente.
+
+---
+
+# IPHONE / PWA
+
+Objetivo futuro:
+
+Convertir Gym Diary en PWA.
+
+Debe poder instalarse desde Safari utilizando:
+
+Añadir a pantalla de inicio
+
+No queremos inicialmente:
+
+- App Store
+- aplicación nativa Swift
+- Apple Developer Program de pago
+
+No empezar la migración PWA hasta que Supabase y la persistencia sean estables, salvo que el usuario lo solicite.
+
+---
+
+# GIT
+
+El proyecto está alojado en GitHub.
+
+Antes de cambios grandes:
+
+- revisar git status
+- no incluir secretos
+- evitar cambios masivos innecesarios
+
+No hacer force push.
+
+No reescribir el historial Git.
+
+---
+
+# FORMA DE TRABAJAR
+
+El usuario quiere desarrollar la aplicación paso a paso.
+
+Cuando se solicite una nueva funcionalidad:
+
+1. Inspecciona primero el código relacionado.
+2. Explica brevemente qué vas a cambiar.
+3. Haz el cambio.
+4. Ejecuta/valida el build.
+5. Indica qué archivos has modificado.
+6. Explica cómo probarlo.
+
+Si tienes acceso al workspace, NO pidas al usuario que copie y pegue archivos completos innecesariamente.
+
+Lee directamente los archivos del proyecto.
+
+No avances varias funcionalidades importantes a la vez sin comprobar primero la anterior.
+
+---
+
+# PRIORIDADES ACTUALES
+
+1. Solucionar el login de Supabase.
+2. Confirmar authGuard.
+3. Confirmar que BottomNav no aparece en /login.
+4. Migrar ExerciseService a Supabase.
+5. Migrar RoutineService.
+6. Migrar WorkoutService.
+7. Verificar persistencia e historial.
+8. Convertir Gym Diary en PWA para iPhone.

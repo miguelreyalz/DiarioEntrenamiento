@@ -1,3 +1,5 @@
 <router-outlet></router-outlet>
 
-<app-bottom-nav></app-bottom-nav>
+@if (showBottomNav()) {
+  <app-bottom-nav></app-bottom-nav>
+}
