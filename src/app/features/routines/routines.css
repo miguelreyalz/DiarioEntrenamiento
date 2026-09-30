@@ -1,4 +1,8 @@
-.routines-page {
+/* ========================================
+   PÁGINA
+   ======================================== */
+
+   .routines-page {
     max-width: 600px;
     min-height: 100vh;
   
@@ -6,25 +10,31 @@
     padding: 32px 20px 110px;
   }
   
+  
+  /* ========================================
+     CABECERA
+     ======================================== */
+  
   .page-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
   
-    margin-bottom: 45px;
+    margin-bottom: 38px;
   }
   
-  .section-label,
-  .section-title {
+  .section-label {
     color: #777777;
   
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.8px;
+  
+    letter-spacing: 1.6px;
   }
   
-  h1 {
-    margin: 6px 0 0;
+  .page-header h1 {
+    margin: 5px 0 0;
+  
     font-size: 28px;
   }
   
@@ -36,27 +46,40 @@
     width: 44px;
     height: 44px;
   
-    border: 1px solid #292929;
     border-radius: 12px;
   
-    background: #151515;
-    color: #ffffff;
+    background: #ffffff;
+    color: #000000;
   
-    font-size: 26px;
+    font-size: 25px;
+    font-weight: 600;
+  
     text-decoration: none;
   }
   
+  
+  /* ========================================
+     SECCIONES
+     ======================================== */
+  
   .routine-section {
-    margin-bottom: 42px;
+    margin-bottom: 38px;
   }
   
   .section-title {
     display: flex;
     align-items: center;
   
-    gap: 8px;
+    gap: 7px;
   
-    margin-bottom: 14px;
+    margin-bottom: 10px;
+  
+    color: #777777;
+  
+    font-size: 10px;
+    font-weight: 700;
+  
+    letter-spacing: 1.4px;
   }
   
   .status-dot {
@@ -68,13 +91,20 @@
     background: #ffffff;
   }
   
-  .routine-card {
-    padding: 22px;
   
+  /* ========================================
+     TARJETA DE RUTINA
+     ======================================== */
+  
+  .routine-card {
     border: 1px solid #252525;
     border-radius: 18px;
   
     background: #111111;
+  }
+  
+  .routine-card.active {
+    padding: 20px;
   }
   
   .routine-card-header {
@@ -82,138 +112,47 @@
     align-items: flex-start;
     justify-content: space-between;
   
-    gap: 20px;
+    gap: 15px;
   }
   
-  .routine-card h2,
-  .routine-card h3 {
-    margin: 0 0 6px;
-  }
+  .routine-card-header h2 {
+    margin: 0 0 5px;
   
-  .routine-card h2 {
     font-size: 21px;
   }
   
-  .routine-card h3 {
-    font-size: 17px;
-  }
-  
-  .routine-card p {
+  .routine-card-header p {
     margin: 0;
   
-    color: #888888;
-  
-    font-size: 13px;
-  }
-  
-  .active-badge {
-    padding: 6px 9px;
-  
-    border-radius: 7px;
-  
-    background: #ffffff;
-    color: #000000;
-  
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1px;
-  }
-  
-  .empty-days {
-    margin-top: 22px;
-    padding-top: 20px;
-  
-    border-top: 1px solid #252525;
-  }
-  
-  .empty-days p {
-    margin-bottom: 16px;
-    line-height: 1.5;
-  }
-  
-  .empty-days button {
-    width: 100%;
-  
-    padding: 14px;
-  
-    border: 0;
-    border-radius: 11px;
-  
-    background: #ffffff;
-    color: #000000;
-  
-    font-weight: 700;
-  }
-  
-  .archived-section {
-    margin-top: 10px;
-  }
-  
-  .no-archived {
-    padding: 22px;
-  
-    border: 1px dashed #292929;
-    border-radius: 14px;
-  
-    color: #666666;
-  
-    text-align: center;
-    font-size: 13px;
-  }
-  
-  .routine-card.archived {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  
-    margin-bottom: 10px;
-  }
-  
-  .arrow {
     color: #777777;
-    font-size: 28px;
+  
+    font-size: 12px;
   }
   
-  .no-routine {
-    padding: 30px;
   
-    border: 1px solid #252525;
-    border-radius: 18px;
+  /* ========================================
+     ACCIONES DE RUTINA
+     ======================================== */
   
-    background: #111111;
-  
-    text-align: center;
-  }
-  
-  .no-routine p {
-    color: #888888;
-  }
-  
-  .no-routine a {
-    display: block;
-  
-    margin-top: 20px;
-    padding: 14px;
-  
-    border-radius: 11px;
-  
-    background: #ffffff;
-    color: #000000;
-  
-    font-weight: 700;
-    text-decoration: none;
-  }
-
   .routine-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+  
+    gap: 8px;
   }
   
-  .archived-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .active-badge {
+    padding: 5px 8px;
+  
+    border-radius: 6px;
+  
+    background: #ffffff;
+    color: #000000;
+  
+    font-size: 8px;
+    font-weight: 800;
+  
+    letter-spacing: 1px;
   }
   
   .delete-button {
@@ -230,8 +169,7 @@
     border-radius: 9px;
   
     background: #181111;
-  
-    font-size: 14px;
+    color: #b77777;
   
     cursor: pointer;
   }
@@ -239,35 +177,68 @@
   .delete-button:hover {
     background: #251515;
   }
-
-  .routine-days {
-    margin-top: 22px;
-    padding-top: 10px;
   
-    border-top: 1px solid #252525;
+  
+  /* ========================================
+     ENTRENAMIENTOS
+     ======================================== */
+  
+  .routine-days {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 9px;
+  
+    margin-top: 22px;
   }
   
   .routine-day {
     display: flex;
     align-items: center;
   
+    width: 100%;
+  
+    border: 1px solid #252525;
+    border-radius: 14px;
+  
+    background: #161616;
+  
+    overflow: hidden;
+  }
+  
+  
+  /* PARTE PULSABLE */
+  
+  .routine-day-link {
+    display: flex;
+    align-items: center;
+  
+    flex: 1;
+    min-width: 0;
+  
     gap: 14px;
   
-    padding: 16px 0;
-  
-    border-bottom: 1px solid #222;
+    padding: 14px;
   
     color: #ffffff;
+  
     text-decoration: none;
   }
+  
+  .routine-day-link:hover {
+    background: #191919;
+  }
+  
+  
+  /* NÚMERO */
   
   .day-number {
     display: flex;
     align-items: center;
     justify-content: center;
   
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
   
     flex-shrink: 0;
   
@@ -275,44 +246,344 @@
   
     background: #202020;
   
+    font-size: 12px;
     font-weight: 700;
   }
+  
+  
+  /* INFORMACIÓN */
   
   .day-info {
     display: flex;
     flex: 1;
     flex-direction: column;
   
+    min-width: 0;
+  
     gap: 4px;
   }
   
   .day-info strong {
-    font-size: 15px;
+    overflow: hidden;
+  
+    font-size: 14px;
+  
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   
   .day-info span {
     color: #777777;
-    font-size: 12px;
+  
+    font-size: 11px;
   }
   
-  .day-arrow {
-    color: #777777;
-    font-size: 26px;
+  
+  /* ========================================
+     BOTONES ORDENAR / ELIMINAR ENTRENAMIENTO
+     ======================================== */
+  
+  .day-actions {
+    display: flex;
+    align-items: center;
+  
+    flex-shrink: 0;
+  
+    gap: 5px;
+  
+    padding-right: 10px;
   }
   
-  .add-another-day {
+  .day-order-button,
+  .day-delete-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 32px;
+    height: 32px;
+  
+    padding: 0;
+  
+    border-radius: 8px;
+  
+    cursor: pointer;
+  }
+  
+  .day-order-button {
+    border: 1px solid #292929;
+  
+    background: #181818;
+    color: #aaaaaa;
+  
+    font-size: 14px;
+  }
+  
+  .day-order-button:hover:not(:disabled) {
+    background: #222222;
+    color: #ffffff;
+  }
+  
+  .day-order-button:disabled {
+    opacity: 0.2;
+  
+    cursor: not-allowed;
+  }
+  
+  .day-delete-button {
+    border: 1px solid #332323;
+  
+    background: #181111;
+    color: #b77777;
+  
+    font-size: 20px;
+  }
+  
+  .day-delete-button:hover {
+    background: #251515;
+    color: #ffffff;
+  }
+  
+  
+  /* ========================================
+     AÑADIR ENTRENAMIENTO
+     ======================================== */
+  
+  .add-another-day,
+  .add-workout-button {
     display: block;
   
-    margin-top: 16px;
     padding: 13px;
   
-    border: 1px solid #292929;
+    border: 1px dashed #333333;
     border-radius: 11px;
   
+    color: #aaaaaa;
+  
+    font-size: 12px;
+    font-weight: 700;
+  
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .add-another-day:hover,
+  .add-workout-button:hover {
+    border-color: #555555;
+  
     color: #ffffff;
+  }
+  
+  
+  /* ========================================
+     RUTINA SIN ENTRENAMIENTOS
+     ======================================== */
+  
+  .empty-days {
+    margin-top: 22px;
+  }
+  
+  .empty-days p {
+    margin: 0 0 15px;
+  
+    color: #777777;
+  
+    font-size: 13px;
+  }
+  
+  
+  /* ========================================
+     SIN RUTINA ACTIVA
+     ======================================== */
+  
+  .no-routine {
+    padding: 30px 20px;
+  
+    border: 1px solid #252525;
+    border-radius: 17px;
+  
+    background: #111111;
+  
+    text-align: center;
+  }
+  
+  .no-routine h2 {
+    margin: 0 0 8px;
+  
+    font-size: 18px;
+  }
+  
+  .no-routine p {
+    margin: 0 0 20px;
+  
+    color: #777777;
+  
+    font-size: 13px;
+  }
+  
+  .no-routine a {
+    display: block;
+  
+    padding: 13px;
+  
+    border-radius: 10px;
+  
+    background: #ffffff;
+    color: #000000;
   
     font-size: 13px;
     font-weight: 700;
-    text-align: center;
+  
     text-decoration: none;
+  }
+  
+  
+  /* ========================================
+     RUTINAS ANTERIORES
+     ======================================== */
+  
+  .archived-section {
+    margin-top: 38px;
+  }
+  
+  .routine-card.archived {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    gap: 15px;
+  
+    margin-bottom: 9px;
+    padding: 16px;
+  }
+  
+  .archived-routine-link {
+    display: flex;
+    align-items: center;
+  
+    flex: 1;
+    min-width: 0;
+  
+    color: inherit;
+  
+    text-decoration: none;
+  }
+  
+  .archived-routine-link h3 {
+    margin: 0 0 5px;
+  
+    overflow: hidden;
+  
+    color: #ffffff;
+  
+    font-size: 15px;
+  
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .archived-routine-link p {
+    margin: 0;
+  
+    color: #777777;
+  
+    font-size: 11px;
+  }
+  
+  .archived-actions {
+    display: flex;
+    align-items: center;
+  
+    flex-shrink: 0;
+  
+    gap: 8px;
+  }
+  
+  .archived-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 32px;
+    height: 32px;
+  
+    color: #777777;
+  
+    font-size: 25px;
+  
+    text-decoration: none;
+  }
+  
+  .archived-arrow:hover {
+    color: #ffffff;
+  }
+  
+  .no-archived {
+    padding: 18px;
+  
+    border: 1px dashed #252525;
+    border-radius: 13px;
+  
+    color: #666666;
+  
+    font-size: 12px;
+  
+    text-align: center;
+  }
+  
+  
+  /* ========================================
+     MÓVIL
+     ======================================== */
+  
+  @media (max-width: 480px) {
+  
+    .routines-page {
+      padding: 24px 14px 100px;
+    }
+  
+    .routine-card.active {
+      padding: 16px 12px;
+    }
+  
+    .routine-card-header h2 {
+      font-size: 19px;
+    }
+  
+    .routine-day-link {
+      gap: 9px;
+  
+      padding: 12px 7px 12px 10px;
+    }
+  
+    .day-number {
+      width: 32px;
+      height: 34px;
+  
+      font-size: 10px;
+    }
+  
+    .day-actions {
+      gap: 3px;
+  
+      padding-right: 6px;
+    }
+  
+    .day-order-button,
+    .day-delete-button {
+      width: 28px;
+      height: 31px;
+    }
+  
+    .day-info strong {
+      font-size: 12px;
+    }
+  
+    .day-info span {
+      font-size: 10px;
+    }
+  
+    .routine-card.archived {
+      padding: 13px;
+    }
   }

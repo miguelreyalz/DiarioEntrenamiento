@@ -256,3 +256,133 @@
     background: #251515;
     color: #ffffff;
   }
+
+  .header-info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .title-row {
+    display: flex;
+    align-items: center;
+  
+    gap: 10px;
+  }
+  
+  .title-row h1 {
+    min-width: 0;
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .edit-name-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 32px;
+    height: 32px;
+  
+    flex-shrink: 0;
+  
+    padding: 0;
+  
+    border: 1px solid #292929;
+    border-radius: 8px;
+  
+    background: #181818;
+    color: #aaaaaa;
+  
+    font-size: 15px;
+  
+    cursor: pointer;
+  }
+  
+  .edit-name-button:hover {
+    color: #ffffff;
+    background: #222222;
+  }
+  
+  
+  /* EDICIÓN DEL NOMBRE */
+  
+  .edit-name-container {
+    display: flex;
+    align-items: center;
+  
+    gap: 7px;
+  
+    margin-top: 5px;
+  }
+  
+  .name-input {
+    width: 100%;
+    min-width: 0;
+    height: 40px;
+  
+    padding: 0 11px;
+  
+    border: 1px solid #444444;
+    border-radius: 9px;
+  
+    outline: none;
+  
+    background: #151515;
+    color: #ffffff;
+  
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  .name-input:focus {
+    border-color: #777777;
+  }
+  
+  .edit-name-actions {
+    display: flex;
+  
+    gap: 5px;
+  
+    flex-shrink: 0;
+  }
+  
+  .save-name-button,
+  .cancel-name-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 38px;
+    height: 38px;
+  
+    padding: 0;
+  
+    border-radius: 9px;
+  
+    cursor: pointer;
+  }
+  
+  .save-name-button {
+    border: 0;
+  
+    background: #ffffff;
+    color: #000000;
+  
+    font-weight: 800;
+  }
+  
+  .save-name-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  
+  .cancel-name-button {
+    border: 1px solid #332323;
+  
+    background: #181111;
+    color: #b77777;
+  
+    font-size: 20px;
+  }

@@ -273,4 +273,118 @@ export class RoutineService {
     this.saveRoutines();
   }
 
+  renameRoutineDay(
+    routineId: string,
+    dayId: string,
+    newName: string
+  ): void {
+  
+    const name = newName.trim();
+  
+    if (!name) {
+      return;
+    }
+  
+    this.routinesSignal.update(routines =>
+      routines.map(routine => {
+  
+        if (routine.id !== routineId) {
+          return routine;
+        }
+  
+        return {
+          ...routine,
+  
+          days: routine.days.map(day =>
+            day.id === dayId
+              ? {
+                  ...day,
+                  name
+                }
+              : day
+          )
+        };
+      })
+    );
+  
+    this.saveRoutines();
+  }
+
+  removeRoutineDay(
+    routineId: string,
+    dayId: string
+  ): void {
+  
+    this.routinesSignal.update(routines =>
+      routines.map(routine => {
+  
+        if (routine.id !== routineId) {
+          return routine;
+        }
+  
+        return {
+          ...routine,
+          days: routine.days.filter(
+            day => day.id !== dayId
+          )
+        };
+      })
+    );
+  
+    this.saveRoutines();
+  }
+  
+  
+  moveRoutineDay(
+    routineId: string,
+    dayId: string,
+    direction: 'up' | 'down'
+  ): void {
+  
+    this.routinesSignal.update(routines =>
+      routines.map(routine => {
+  
+        if (routine.id !== routineId) {
+          return routine;
+        }
+  
+        const days = [...routine.days];
+  
+        const currentIndex =
+          days.findIndex(day => day.id === dayId);
+  
+        if (currentIndex === -1) {
+          return routine;
+        }
+  
+        const newIndex =
+          direction === 'up'
+            ? currentIndex - 1
+            : currentIndex + 1;
+  
+        if (
+          newIndex < 0 ||
+          newIndex >= days.length
+        ) {
+          return routine;
+        }
+  
+        [
+          days[currentIndex],
+          days[newIndex]
+        ] = [
+          days[newIndex],
+          days[currentIndex]
+        ];
+  
+        return {
+          ...routine,
+          days
+        };
+      })
+    );
+  
+    this.saveRoutines();
+  }
+
 }

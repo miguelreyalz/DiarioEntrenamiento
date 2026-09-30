@@ -9,6 +9,7 @@ import { RoutineDayDetail } from './features/routines/routine-day-detail/routine
 import { AddExercise } from './features/routines/add-exercise/add-exercise';
 import { WorkoutSession } from './features/workout/workout-session/workout-session';
 import { HistoryDetail } from './features/history/history-detail/history-detail';
+import { ArchivedRoutineDetail } from './features/routines/archived-routine-detail/archived-routine-detail';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,10 @@ export const routes: Routes = [
   {
     path: 'history/:sessionId',
     component: HistoryDetail
+  },
+  {
+    path: 'routines/archived/:routineId',
+    component: ArchivedRoutineDetail
   },
   {
     path: '**',

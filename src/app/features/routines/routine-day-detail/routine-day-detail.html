@@ -9,13 +9,50 @@
         </button>
 
         <div class="header-info">
+
             <span class="routine-name">
                 {{ routine.name }}
             </span>
 
-            <h1>
-                {{ day.name }}
-            </h1>
+
+            @if (!isEditingName) {
+
+            <div class="title-row">
+
+                <h1>
+                    {{ day.name }}
+                </h1>
+
+                <button class="edit-name-button" (click)="startEditingName()" aria-label="Editar nombre">
+                    ✎
+                </button>
+
+            </div>
+
+            } @else {
+
+            <div class="edit-name-container">
+
+                <input class="name-input" type="text" [(ngModel)]="editedName" (keyup.enter)="saveName()"
+                    (keyup.escape)="cancelEditingName()" autocomplete="off">
+
+                <div class="edit-name-actions">
+
+                    <button class="save-name-button" (click)="saveName()" [disabled]="!editedName.trim()"
+                        aria-label="Guardar nombre">
+                        ✓
+                    </button>
+
+                    <button class="cancel-name-button" (click)="cancelEditingName()" aria-label="Cancelar">
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+            }
+
         </div>
 
     </header>

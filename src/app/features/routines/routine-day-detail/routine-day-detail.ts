@@ -6,10 +6,11 @@ import { ExerciseService } from '../../../core/services/exercise';
 
 import { Routine } from '../../../core/models/routine.model';
 import { RoutineDay } from '../../../core/models/routine-day.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-routine-day-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './routine-day-detail.html',
   styleUrl: './routine-day-detail.css'
 })
@@ -17,6 +18,8 @@ export class RoutineDayDetail {
 
   routine?: Routine;
   day?: RoutineDay;
+  isEditingName = false;
+  editedName = '';
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -55,72 +58,113 @@ export class RoutineDayDetail {
     if (!this.routine || !this.day) {
       return;
     }
-  
+
     const exercise =
       this.exerciseService.getExerciseById(exerciseId);
-  
+
     const confirmed = window.confirm(
       `¿Eliminar ${exercise?.name ?? 'este ejercicio'} del entrenamiento?`
     );
-  
+
     if (!confirmed) {
       return;
     }
-  
+
     this.routineService.removeExerciseFromDay(
       this.routine.id,
       this.day.id,
       exerciseId
     );
-  
+
     this.reloadDay();
   }
-  
-  
+
+
   moveExerciseUp(exerciseId: string): void {
-  
+
     if (!this.routine || !this.day) {
       return;
     }
-  
+
     this.routineService.moveExercise(
       this.routine.id,
       this.day.id,
       exerciseId,
       'up'
     );
-  
+
     this.reloadDay();
   }
-  
-  
+
+
   moveExerciseDown(exerciseId: string): void {
-  
+
     if (!this.routine || !this.day) {
       return;
     }
-  
+
     this.routineService.moveExercise(
       this.routine.id,
       this.day.id,
       exerciseId,
       'down'
     );
-  
+
     this.reloadDay();
   }
-  
-  
+
+
   private reloadDay(): void {
-  
+
     if (!this.routine || !this.day) {
       return;
     }
-  
+
     this.day =
       this.routineService.getRoutineDay(
         this.routine.id,
         this.day.id
       );
+  }
+
+  startEditingName(): void {
+
+    if (!this.day) {
+      return;
+    }
+  
+    this.editedName = this.day.name;
+    this.isEditingName = true;
+  }
+  
+  
+  cancelEditingName(): void {
+    this.isEditingName = false;
+    this.editedName = '';
+  }
+  
+  
+  saveName(): void {
+  
+    if (!this.routine || !this.day) {
+      return;
+    }
+  
+    const name = this.editedName.trim();
+  
+    if (!name) {
+      return;
+    }
+  
+    this.routineService.renameRoutineDay(
+      this.routine.id,
+      this.day.id,
+      name
+    );
+  
+    this.reloadDay();
+  
+    this.isEditingName = false;
+    this.editedName = '';
   }
 }
